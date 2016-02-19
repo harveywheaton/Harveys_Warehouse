@@ -75,4 +75,11 @@ def test_cant_find_single_bay
   assert_equal(nil,result)
 end
 
+# test to return multiple items given mutiple bays
+def test_find_mutiple_items
+  result = find_multiple_items(@warehouse_data,[:b7, :a3, :a7])
+  assert_equal(["bath fizzers","blouse","bookmark"],result)
+
+end
+
 end
