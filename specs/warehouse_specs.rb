@@ -82,4 +82,10 @@ def test_find_mutiple_items
 
 end
 
+#  test to return mutiple keys (bays) given multiple items
+def test_find_multiple_bays
+  result = find_multiple_bays(@warehouse_data,["bath fizzers","blouse","bookmark"])
+  assert_equal([:b7, :a3, :a7],result)
+end
+
 end
