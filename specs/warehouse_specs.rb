@@ -8,6 +8,7 @@ require_relative ('../warehouse_functions')
 
 class TestMyFunctions < MiniTest::Test
 
+#------------------------------------------
 def setup
  
     @warehouse_data = {
@@ -47,7 +48,7 @@ def setup
 end
 
 
-  
+#------------------------------------------
 # Test to see if we can get an item given its bay
 def test_find_single_item
 
@@ -56,6 +57,7 @@ def test_find_single_item
   
 end
 
+#------------------------------------------
 # Test to make sure we get nil if we supply a non-existent bay
 def test_cant_find_single_item
 
@@ -64,43 +66,51 @@ def test_cant_find_single_item
   
 end
 
+#------------------------------------------
 # Test to see if we can get a bay for an existing item
 def test_find_single_bay
   result = find_single_bay(@warehouse_data,"blouse")
   assert_equal(:a3,result)
 end
 
-# # Test to make sure we get nil if there is no such item
+#------------------------------------------
+# Test to make sure we get nil if there is no such item
 def test_cant_find_single_bay
   result = find_single_bay(@warehouse_data,"elephant")
   assert_equal(nil,result)
 end
 
-# # test to return multiple items given mutiple bays
+#------------------------------------------
+# test to return multiple items given mutiple bays
 def test_find_mutiple_items
   result = find_multiple_items(@warehouse_data,[:b7, :a3, :a7])
   assert_equal(["bath fizzers","blouse","bookmark"],result)
 
 end
 
+
+#------------------------------------------
 # test to return mutiple keys (bays) given multiple items
 def test_find_multiple_bays
   result = find_multiple_bays(@warehouse_data,["bath fizzers","blouse","bookmark"])
   assert_equal([:b7, :a3, :a7],result)
 end
 
+
+#------------------------------------------
 def test_find_items_and_distance_apart
   result = find_multiple_items_and_distance(@warehouse_data,[:b5,:b10,:b6])
   assert_equal({:items=>["nail filer", "cookie jar","tooth paste"],:distance=>5},result)
 end
 
 
+#------------------------------------------
 # test to return mutiple keys (bays) given multiple items and also calculate distance between furthest bays
 
-# def test_find_bays_and_distance_apart
-#   result = find_multiple_bays_and_distance(@warehouse_data,["bath fizzers","blouse","bookmark"])
-#   assert_equal({:bays=>[:b5, :a3, :a7],:distance=>23},result)
-# end
+def test_find_bays_and_distance_apart
+result = find_multiple_bays_and_distance(@warehouse_data,["bath fizzers","blouse","bookmark"])
+assert_equal({:bays=>[:b7, :a3, :a7],:distance=>23},result)
+end
 
 
 end
