@@ -203,7 +203,7 @@ def weight_of_items_in_bays(hash,bay_array)
 end
 
 #-------------------------------------------
-# Return a hash of items with count of how many
+# Return an array of items with a count of how many of each unique item
 def stock_list(hash)
   
   # First build array of unique items
