@@ -47,6 +47,13 @@ def setup
 
 end
 
+#--------------------------------------------------
+# Test data to make sure all positions are unique in the data set
+def test_verify_data_positions
+  result = verify_data_positions(@warehouse_data)
+  assert_equal(true,result)
+end
+
 
 #------------------------------------------
 # Test to see if we can get an item given its bay
@@ -131,6 +138,15 @@ def test_weight_of_items_in_bays
 
 end
 
+
+
+#------------------------------------------
+# test to return list of all stock with number of each unique item
+def test_stock_list
+    result = stock_list(@warehouse_data)
+    assert_equal([["bath fizzers", 1], ["blouse", 1], ["bookmark", 1], ["candy wrapper", 1], ["chalk", 1], ["cookie jar", 1], ["deodorant", 1], ["drill press", 1], ["face wash", 1], ["glow stick", 1], ["hanger", 1], ["leg warmers", 1], ["model car", 1], ["nail filer", 1], ["needle", 1], ["paint brush", 1], ["photo album", 1], ["picture frame", 1], ["rubber band", 1], ["rubber duck", 1], ["rusty nail", 1], ["sharpie", 1], ["shoe lace", 1], ["shovel", 1], ["stop sign", 1], ["thermometer", 1], ["tyre swing", 1], ["tissue box", 1], ["tooth paste", 1], ["word search", 1]],result)
+
+end
 
 
 

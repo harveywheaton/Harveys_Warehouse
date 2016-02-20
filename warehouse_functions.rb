@@ -2,6 +2,31 @@
 # 
 # 
 
+#-------------------------------------------
+# Verify all values for 'position' in the data are unique
+# This is critical to calculatig distance between bays
+def verify_data_positions(hash)
+  items = hash.values
+
+  positions=Array.new
+    for thing in items
+      positions << thing[:position]
+  end
+  
+  all_unique = true
+
+  for value in positions
+    if positions.count(value)>1
+      print "Position " + value.to_s + " is not unique!"
+      all_unique=false  
+    end
+
+  end
+  
+  return all_unique
+
+end
+
 
 #-------------------------------------------
 # (1) Return a single item given the bay number
@@ -164,8 +189,9 @@ def find_bays_and_picking_order(hash,item_array)
 
 end
 
-
-
+# ADDITIONAL FUNCTIONS
+#-------------------------------------------
+# For a list of bays, return the weight of all items in them
 def weight_of_items_in_bays(hash,bay_array)
   weight = 0
   for bay in bay_array
@@ -173,5 +199,40 @@ def weight_of_items_in_bays(hash,bay_array)
   end
 
   return weight
+
+end
+
+#-------------------------------------------
+# Return a hash of items with count of how many
+def stock_list(hash)
+  
+  # First build array of unique items
+  stock=Array.new
+  for key,value in hash
+    unless stock.include?(value[:item])   
+      stock << value[:item]
+    end
+  end
+  
+
+    # Then build array with each unique item and its count
+
+    return_array = Array.new
+
+    for stock_item in stock
+      count_of_items = 0
+      
+      for key,value in hash
+
+        if value[:item] == stock_item
+          count_of_items += 1          
+        end
+      end
+
+      return_array << [stock_item,count_of_items]
+
+    end
+
+  return return_array
 
 end
